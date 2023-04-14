@@ -1,0 +1,6 @@
+tensorflow-cpu
+matplotlib
+numpy
+scipy
+flask
+-e .
