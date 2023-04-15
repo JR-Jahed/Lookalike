@@ -1,4 +1,6 @@
 import sys
+
+from src.components.model_trainer import ModelTrainer
 from src.exception import CustomException
 from src.logger import logging
 from dataclasses import dataclass
@@ -61,4 +63,34 @@ class DataIngestion:
 if __name__ == "__main__":
 
     dataIngestion = DataIngestion()
-    dataIngestion.initiate_data_ingestion()
+    train_images, val_images, test_images = dataIngestion.initiate_data_ingestion()
+
+    model_trainer = ModelTrainer()
+
+    model_trainer.initiate_model_trainer(
+        train_images,
+        val_images,
+        test_images,
+        (image_width, image_height, 3),
+        False
+    )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
