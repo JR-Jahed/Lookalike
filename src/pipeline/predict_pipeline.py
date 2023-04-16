@@ -5,7 +5,7 @@ from src.exception import CustomException
 from PIL import Image
 from io import BytesIO
 
-model_path = "../../artifacts/My Model"
+model_path = "./artifacts/My Model"
 
 class_names = ['Amir Khan', 'Angelina Jolie', 'Brad Pitt', 'Denzel Washington', 'Hugh Jackman',
                'Jennifer Lawrence', 'Johnny Depp', 'Kate Winslet', 'Leonardo DiCaprio', 'Megan Fox',
@@ -15,13 +15,13 @@ class_names = ['Amir Khan', 'Angelina Jolie', 'Brad Pitt', 'Denzel Washington', 
 
 class PredictPipeline:
 
-    def predict(self, image):
+    def predict(self, image_batch):
 
         try:
 
             model = keras.models.load_model(model_path)
 
-            prediction = model.predict(image)
+            prediction = model.predict(image_batch)
 
             predicted_class = class_names[np.argmax(prediction[0])]
             confidence = np.max(prediction[0])
@@ -35,9 +35,9 @@ class PredictPipeline:
             raise CustomException(e, sys)
 
 
-class Data:
-    def __init__(self, data):
-        image = np.array(Image.open(BytesIO(data)))
+class CustomData:
+    def __init__(self, byte):
+        image = np.array(Image.open(BytesIO(byte)))
 
         self.image_batch = np.expand_dims(image, 0)
 

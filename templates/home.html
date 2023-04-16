@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Your lookalike</title>
+</head>
+
+<body>
+    <form action = "{{url_for('predict')}}" method = "post" enctype="multipart/form-data">
+        <input type="file" name="file" />
+        <input type = "submit" value="Upload">
+    </form>
+
+    <br>
+    <br>
+
+    {{lookalike}}
+    <br>
+    <br>
+    {{confidence}}
+
+</body>
+</html>
